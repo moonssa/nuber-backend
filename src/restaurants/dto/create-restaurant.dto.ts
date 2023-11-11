@@ -37,4 +37,8 @@ export class CreateRestaurantDto_arg {
   @Field((type) => String)
   @IsString()
   ownerName: string;
+
+  @Field((type) => String)
+  @IsString()
+  categoryName: string;
 }

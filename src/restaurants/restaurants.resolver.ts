@@ -4,17 +4,21 @@ import {
   CreateRestaurantDto,
   CreateRestaurantDto_arg,
 } from './dto/create-restaurant.dto';
+import { RestaurantService } from './restaurants.service';
 
 @Resolver((of) => Restaurant)
 export class RestaurantResolver {
+  constructor(private readonly restaurantService: RestaurantService) {}
+
   @Query(() => Boolean)
   isPizzaGood() {
     return true;
   }
   @Query((returns) => [Restaurant])
-  getAll(): Restaurant[] {
-    return [];
+  restaurants(): Promise<Restaurant[]> {
+    return this.restaurantService.getAll();
   }
+
   @Query((resurns) => Restaurant)
   getRestaurant(@Args('veganOnly') vg: string): Restaurant {
     return;
